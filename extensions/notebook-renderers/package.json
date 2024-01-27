@@ -46,7 +46,6 @@
 		"watch": "npx gulp compile-watch:notebook-renderers",
 		"build-notebook": "node ./esbuild"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@types/jsdom": "^21.1.0",
 		"@types/vscode-notebook-renderer": "^1.60.0",

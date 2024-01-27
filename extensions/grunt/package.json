@@ -17,7 +17,6 @@
     "compile": "gulp compile-extension:grunt",
     "watch": "gulp watch-extension:grunt"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "18.x"
   },

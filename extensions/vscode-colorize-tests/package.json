@@ -16,12 +16,6 @@
   "scripts": {
     "vscode:prepublish": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../../build/gulpfile.extensions.js compile-extension:vscode-colorize-tests ./tsconfig.json"
   },
-  "dependencies": {
-    "jsonc-parser": "^3.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "18.x"
-  },
   "contributes": {
     "semanticTokenTypes": [
       {
@@ -56,5 +50,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/vscode.git"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.7"
   }
 }
