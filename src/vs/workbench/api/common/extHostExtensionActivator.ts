@@ -220,6 +220,7 @@ export class ExtensionsActivator implements IDisposable {
 		}
 
 		const activateExtensions = this._registry.getExtensionDescriptionsForActivationEvent(activationEvent);
+
 		await this._activateExtensions(activateExtensions.map(e => ({
 			id: e.identifier,
 			reason: { startup, extensionId: e.identifier, activationEvent }
@@ -420,6 +421,7 @@ class ActivationOperation {
 
 	private async _activate(): Promise<void> {
 		try {
+			console.log("🚀 ~ ActivationOperation ~ _activate ~ this._id:", this._id, this._reason)
 			this._value = await this._host.actualActivateExtension(this._id, this._reason);
 		} catch (err) {
 

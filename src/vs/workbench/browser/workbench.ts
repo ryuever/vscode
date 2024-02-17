@@ -153,9 +153,11 @@ export class Workbench extends Layout {
 
 				// Layout
 				this.initLayout(accessor);
+				const result = Registry.as<IWorkbenchContributionsRegistry>(WorkbenchExtensions.Workbench)
+				console.log('rsult =------ ', result)
 
 				// Registries
-				Registry.as<IWorkbenchContributionsRegistry>(WorkbenchExtensions.Workbench).start(accessor);
+				result.start(accessor);
 				Registry.as<IEditorFactoryRegistry>(EditorExtensions.EditorFactory).start(accessor);
 
 				// Context Keys

@@ -12,6 +12,7 @@ const vm = require("vm");
  * Bundle `entryPoints` given config `config`.
  */
 function bundle(entryPoints, config, callback) {
+    console.log('bundle ---------')
     const entryPointsMap = {};
     entryPoints.forEach((module) => {
         if (entryPointsMap[module.name]) {

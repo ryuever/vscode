@@ -25,6 +25,8 @@ const headerVersion = semver + '(' + sha1 + ')';
 
 // Build
 
+console.log('gulp build entry------')
+
 const editorEntryPoints = [
 	{
 		name: 'vs/editor/editor.main',

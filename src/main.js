@@ -18,6 +18,9 @@ perf.mark('code/didStartMain');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+
+console.log('main start----')
+
 const bootstrap = require('./bootstrap');
 const bootstrapNode = require('./bootstrap-node');
 const { getUserDataPath } = require('./vs/platform/environment/node/userDataPath');
@@ -173,6 +176,8 @@ function startup(codeCachePath, nlsConfig) {
 	process.env['VSCODE_NLS_CONFIG'] = JSON.stringify(nlsConfig);
 	process.env['VSCODE_CODE_CACHE_PATH'] = codeCachePath || '';
 
+	console.log('src/main2.js')
+
 	// Load main in AMD
 	perf.mark('code/willLoadMainBundle');
 	require('./bootstrap-amd').load('vs/code/electron-main/main', () => {
@@ -181,6 +186,7 @@ function startup(codeCachePath, nlsConfig) {
 }
 
 async function onReady() {
+	console.log('on ready===')
 	perf.mark('code/mainAppReady');
 
 	try {

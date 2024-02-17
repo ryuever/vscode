@@ -410,6 +410,11 @@ async function startExtensionHostProcess(): Promise<void> {
 		uriTransformer = createURITransformer(initData.remote.authority);
 	}
 
+	console.log('ExtensionHostMain --------------------')
+
+
+
+
 	const extensionHostMain = new ExtensionHostMain(
 		renderer.protocol,
 		initData,

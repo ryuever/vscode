@@ -42,7 +42,7 @@ function code() {
 	export ELECTRON_ENABLE_STACK_DUMPING=1
 	export ELECTRON_ENABLE_LOGGING=1
 
-	# Launch Code
+	# # Launch Code
 	exec "$CODE" . "$@"
 }
 

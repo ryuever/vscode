@@ -149,6 +149,10 @@ export class ExtensionHostMain {
 		this._hostUtils = hostUtils;
 		this._rpcProtocol = new RPCProtocol(protocol, null, uriTransformer);
 
+		debugger
+
+		console.log('initial ----------------')
+
 		// ensure URIs are transformed and revived
 		initData = ExtensionHostMain._transform(initData, this._rpcProtocol);
 

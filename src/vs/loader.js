@@ -19,9 +19,14 @@
  *---------------------------------------------------------------------------------------------
  *--------------------------------------------------------------------------------------------*/
 const _amdLoaderGlobal = this;
+
+console.log('src/vs/loader.js')
+
 const _commonjsGlobal = typeof global === 'object' ? global : {};
 var AMDLoader;
 (function (AMDLoader) {
+	console.log('environment2 ---')
+
 	AMDLoader.global = _amdLoaderGlobal;
 	class Environment {
 		get isWindows() {
@@ -1043,6 +1048,7 @@ var AMDLoader;
  *--------------------------------------------------------------------------------------------*/
 var AMDLoader;
 (function (AMDLoader) {
+	console.log('amd -----')
 	// ------------------------------------------------------------------------
 	// ModuleIdResolver
 	class ModuleIdResolver {
@@ -1820,6 +1826,7 @@ var AMDLoader;
 		moduleManager.configure(params, shouldOverwrite);
 	};
 	const RequireFunc = function () {
+		// debugger
 		if (arguments.length === 1) {
 			if ((arguments[0] instanceof Object) && !Array.isArray(arguments[0])) {
 				_requireFunc_config(arguments[0]);
@@ -1889,3 +1896,5 @@ var AMDLoader;
 		}
 	}
 })(AMDLoader || (AMDLoader = {}));
+
+// console.log('AMDLoader \n', AMDLoader)

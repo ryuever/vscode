@@ -244,6 +244,7 @@ export class ExtensionHostManager extends Disposable implements IExtensionHostMa
 	private _createExtensionHostCustomers(kind: ExtensionHostKind, protocol: IMessagePassingProtocol): IExtensionHostProxy {
 
 		let logger: IRPCProtocolLogger | null = null;
+
 		if (LOG_EXTENSION_HOST_COMMUNICATION || this._environmentService.logExtensionHostCommunication) {
 			logger = new RPCLogger(kind);
 		} else if (TelemetryRPCLogger.isEnabled()) {

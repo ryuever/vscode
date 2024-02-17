@@ -250,6 +250,8 @@
 
 	//#endregion
 
+	console.log('src/bootstrap3')
+
 	return {
 		enableASARSupport,
 		setupNLS,

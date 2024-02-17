@@ -210,6 +210,10 @@ export class ExtensionDescriptionRegistry implements IReadOnlyExtensionDescripti
 
 	public getExtensionDescriptionsForActivationEvent(activationEvent: string): IExtensionDescription[] {
 		const extensions = this._activationMap.get(activationEvent);
+		// for (const key of this._activationMap.keys()) {
+		// 	console.log(key);
+		// }
+		console.log("🚀 ~ ExtensionDescriptionRegistry ~ getExtensionDescriptionsForActivationEvent ~ _activationMap x:", activationEvent)
 		return extensions ? extensions.slice(0) : [];
 	}
 

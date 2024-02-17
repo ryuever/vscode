@@ -202,6 +202,8 @@ export abstract class AbstractExtHostExtensionService extends Disposable impleme
 		this._resolvers = Object.create(null);
 		this._started = false;
 		this._remoteConnectionData = this._initData.remote.connectionData;
+
+		console.log('AbstractExtHostExtensionService -------')
 	}
 
 	public getRemoteConnectionData(): IRemoteConnectionData | null {
@@ -635,6 +637,7 @@ export abstract class AbstractExtHostExtensionService extends Disposable impleme
 		this._extHostConfiguration.getConfigProvider().then((configProvider) => {
 			const shouldDeferActivation = configProvider.getConfiguration('extensions.experimental').get<boolean>('deferredStartupFinishedActivation');
 			const allExtensionDescriptions = this._myRegistry.getAllExtensionDescriptions();
+			console.log("🚀 ~ AbstractExtHostExtensionService ~ this._extHostConfiguration.getConfigProvider ~ allExtensionDescriptions:", allExtensionDescriptions)
 			if (shouldDeferActivation) {
 				this._activateAllStartupFinishedDeferred(allExtensionDescriptions);
 			} else {
@@ -998,6 +1001,7 @@ export abstract class AbstractExtHostExtensionService extends Disposable impleme
 	}
 
 	public $activateByEvent(activationEvent: string, activationKind: ActivationKind): Promise<void> {
+		console.log("🚀 ~ AbstractExtHostExtensionService ~ $activateByEvent ~ activationEvent:", activationEvent, activationKind)
 		if (activationKind === ActivationKind.Immediate) {
 			return this._almostReadyToRunExtensions.wait()
 				.then(_ => this._activateByEvent(activationEvent, false));

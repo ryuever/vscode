@@ -42,6 +42,7 @@ export class ImplicitActivationEventsImpl {
 				result[ExtensionIdentifier.toKey(extensionDescription.identifier)] = activationEvents;
 			}
 		}
+		console.log("🚀 ~ ImplicitActivationEventsImpl ~ createActivationEventsMap ~ result:", result)
 		return result;
 	}
 

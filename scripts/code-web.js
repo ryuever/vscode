@@ -86,6 +86,7 @@ async function main() {
 
 function startServer(runnerArguments) {
 	const env = { ...process.env };
+	console.log('start server ', process.execPath, runnerArguments);
 
 	console.log(`Starting @vscode/test-web: ${testWebLocation} ${runnerArguments.join(' ')}`);
 	const proc = cp.spawn(process.execPath, [testWebLocation, ...runnerArguments], { env, stdio: 'inherit' });

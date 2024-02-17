@@ -9,6 +9,8 @@
 
 const withDefaults = require('../shared.webpack.config');
 
+console.log('grunt -----------------')
+
 module.exports = withDefaults({
 	context: __dirname,
 	entry: {

@@ -30,7 +30,11 @@ export class WebExtensionManagementService extends AbstractExtensionManagementSe
 	private readonly disposables = this._register(new DisposableStore());
 
 	get onProfileAwareInstallExtension() { return super.onInstallExtension; }
-	override get onInstallExtension() { return Event.filter(this.onProfileAwareInstallExtension, e => this.filterEvent(e), this.disposables); }
+	override get onInstallExtension() { 
+		const result = Event.filter(this.onProfileAwareInstallExtension, e => this.filterEvent(e), this.disposables); 
+		console.log("🚀 ~ WebExtensionManagementService ~ overridegetonInstallExtension ~ result:", result)
+		return result
+	}
 
 	get onProfileAwareDidInstallExtensions() { return super.onDidInstallExtensions; }
 	override get onDidInstallExtensions() {

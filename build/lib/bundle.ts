@@ -129,6 +129,7 @@ export function bundle(entryPoints: IEntryPoint[], config: ILoaderConfig, callba
 		});
 	});
 
+	console.log('bbbbb')
 
 	const code = require('fs').readFileSync(path.join(__dirname, '../../src/vs/loader.js'));
 	const r: Function = <any>vm.runInThisContext('(function(require, module, exports) { ' + code + '\n});');

@@ -19,6 +19,8 @@ let client: BaseLanguageClient | undefined;
 
 // this method is called when vs code is activated
 export async function activate(context: ExtensionContext) {
+	debugger
+	console.log('css client main')
 	const serverMain = Uri.joinPath(context.extensionUri, 'server/dist/browser/cssServerMain.js');
 	try {
 		const worker = new Worker(serverMain.toString());

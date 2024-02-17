@@ -32,6 +32,10 @@ const loader = require('./vs/loader');
 const bootstrap = require('./bootstrap');
 const performance = require('./vs/base/common/performance');
 
+// console.log('loader ---- ', loader)
+
+console.log('src/bootstrap-amd.js')
+
 // Bootstrap: NLS
 const nlsConfig = bootstrap.setupNLS();
 

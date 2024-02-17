@@ -28,5 +28,7 @@ bootstrap.enableASARSupport();
 // Signal processes that we got launched as CLI
 process.env['VSCODE_CLI'] = '1';
 
+console.log('src ---------')
+
 // Load CLI through AMD loader
 require('./bootstrap-amd').load('vs/code/node/cli');

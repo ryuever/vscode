@@ -8,6 +8,7 @@
 'use strict';
 
 const withDefaults = require('../shared.webpack.config');
+console.log('jake -----------------')
 
 module.exports = withDefaults({
 	context: __dirname,

@@ -84,6 +84,7 @@ class RemoteExtensionHostAgentServer extends Disposable implements IServerAPI {
 
 		this._serverRootPath = getRemoteServerRootPath(_productService);
 		this._extHostConnections = Object.create(null);
+		console.log("🚀 ~ RemoteExtensionHostAgentServer ~ this._extHostConnections:", this._extHostConnections)
 		this._managementConnections = Object.create(null);
 		this._allReconnectionTokens = new Set<string>();
 		this._webClientServer = (
@@ -92,6 +93,7 @@ class RemoteExtensionHostAgentServer extends Disposable implements IServerAPI {
 				: null
 		);
 		this._logService.info(`Extension host agent started.`);
+		
 
 		this._waitThenShutdown(true);
 	}

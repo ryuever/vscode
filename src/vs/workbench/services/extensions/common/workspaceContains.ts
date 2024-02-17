@@ -31,6 +31,7 @@ export interface IExtensionActivationResult {
 
 export function checkActivateWorkspaceContainsExtension(host: IExtensionActivationHost, desc: IExtensionDescription): Promise<IExtensionActivationResult | undefined> {
 	const activationEvents = desc.activationEvents;
+	// console.log("🚀 ~ checkActivateWorkspaceContainsExtension ~ activationEvents:", activationEvents)
 	if (!activationEvents) {
 		return Promise.resolve(undefined);
 	}

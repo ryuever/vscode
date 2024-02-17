@@ -292,7 +292,10 @@ export class RPCProtocol extends Disposable implements IRPCProtocol {
 		switch (messageType) {
 			case MessageType.RequestJSONArgs:
 			case MessageType.RequestJSONArgsWithCancellation: {
+				
 				let { rpcId, method, args } = MessageIO.deserializeRequestJSONArgs(buff);
+				console.log("🚀 ~ RPCProtocol ~ _receiveOneMessage ~ req:", req, buff, rpcId, method, args)
+
 				if (this._uriTransformer) {
 					args = transformIncomingURIs(args, this._uriTransformer);
 				}
@@ -455,6 +458,7 @@ export class RPCProtocol extends Disposable implements IRPCProtocol {
 		if (typeof method !== 'function') {
 			throw new Error('Unknown method ' + methodName + ' on actor ' + getStringIdentifierForProxy(rpcId));
 		}
+		// console.log('args ', method, rpcId, args, actor)
 		return method.apply(actor, args);
 	}
 
@@ -473,6 +477,9 @@ export class RPCProtocol extends Disposable implements IRPCProtocol {
 		}
 
 		const serializedRequestArguments = MessageIO.serializeRequestArguments(args, this._uriReplacer);
+		this._logger?.logIncoming(20, 20, RequestInitiator.LocalSide, 'b', args)
+		// console.log("🚀 ~ RPCProtocol ~ _remoteCall ~ serializedRequestArguments:")
+
 
 		const req = ++this._lastMessageId;
 		const callId = String(req);

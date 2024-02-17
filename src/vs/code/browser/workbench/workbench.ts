@@ -574,6 +574,8 @@ function readCookie(name: string): string | undefined {
 	const secretStorageCrypto = secretStorageKeyPath && ServerKeyedAESCrypto.supported()
 		? new ServerKeyedAESCrypto(secretStorageKeyPath) : new TransparentCrypto();
 
+	console.log('running =======')
+
 	// Create workbench
 	create(mainWindow.document.body, {
 		...config,

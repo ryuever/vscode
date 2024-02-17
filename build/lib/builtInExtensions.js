@@ -129,6 +129,7 @@ function getBuiltInExtensions() {
 }
 exports.getBuiltInExtensions = getBuiltInExtensions;
 if (require.main === module) {
+    console.log('in buildin ')
     getBuiltInExtensions().then(() => process.exit(0)).catch(err => {
         console.error(err);
         process.exit(1);
