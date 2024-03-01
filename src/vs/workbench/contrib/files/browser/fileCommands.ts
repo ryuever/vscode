@@ -692,7 +692,7 @@ KeybindingsRegistry.registerCommandAndKeybindingRule({
 	},
 	handler: async (accessor, args?: { languageId?: string; viewType?: string }) => {
 		const editorService = accessor.get(IEditorService);
-
+		console.log('open editor------')
 		await editorService.openEditor({
 			resource: undefined,
 			options: {

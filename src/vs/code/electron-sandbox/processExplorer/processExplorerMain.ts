@@ -553,6 +553,7 @@ class ProcessExplorer {
 
 	private requestProcessList(totalWaitTime: number): void {
 		setTimeout(() => {
+			// console.log('requestProcessList============')
 			const nextRequestTime = Date.now();
 			const waited = totalWaitTime + nextRequestTime - this.lastRequestTime;
 			this.lastRequestTime = nextRequestTime;

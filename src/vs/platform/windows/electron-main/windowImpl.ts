@@ -520,6 +520,8 @@ export class CodeWindow extends BaseWindow implements ICodeWindow {
 			// after the call to maximize/fullscreen (see below)
 			const isFullscreenOrMaximized = (this.windowState.mode === WindowMode.Maximized || this.windowState.mode === WindowMode.Fullscreen);
 
+			console.log('testing--------------')
+
 			const options = instantiationService.invokeFunction(defaultBrowserWindowOptions, this.windowState, {
 				show: !isFullscreenOrMaximized, // reduce flicker by showing later
 				webPreferences: {
@@ -990,6 +992,9 @@ export class CodeWindow extends BaseWindow implements ICodeWindow {
 
 		// Indicate we are navigting now
 		this.readyState = ReadyState.NAVIGATING;
+
+
+		console.log('load index =======')
 
 		// Load URL
 		this._win.loadURL(FileAccess.asBrowserUri(`vs/code/electron-sandbox/workbench/workbench${this.environmentMainService.isBuilt ? '' : '-dev'}.html`).toString(true));
@@ -1494,6 +1499,8 @@ export class CodeWindow extends BaseWindow implements ICodeWindow {
 
 			try {
 				this._win.webContents.send(channel, ...args);
+				console.log('send---------------------', channel, args);
+				// this.logService.trace('send ----', channel);
 			} catch (error) {
 				this.logService.warn(`Error sending IPC message to channel '${channel}' of window ${this._id}: ${toErrorMessage(error)}`);
 			}

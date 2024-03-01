@@ -252,7 +252,11 @@
 			get arch() { return process.arch; },
 			get env() { return { ...process.env }; },
 			get versions() { return process.versions; },
-			get type() { return 'renderer'; },
+			get type() {
+				console.log('testing');
+				// return 'renderer';
+				return 'testing';
+			},
 			get execPath() { return process.execPath; },
 
 			/**

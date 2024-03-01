@@ -262,6 +262,7 @@ export class WindowsMainService extends Disposable implements IWindowsMainServic
 	}
 
 	openEmptyWindow(openConfig: IOpenEmptyConfiguration, options?: IOpenEmptyWindowOptions): Promise<ICodeWindow[]> {
+		console.log('openemtry-------')
 		const cli = this.environmentMainService.args;
 		const remoteAuthority = options?.remoteAuthority || undefined;
 		const forceEmpty = true;
@@ -282,6 +283,9 @@ export class WindowsMainService extends Disposable implements IWindowsMainServic
 
 	async open(openConfig: IOpenConfiguration): Promise<ICodeWindow[]> {
 		this.logService.trace('windowsManager#open');
+
+
+		console.log("open -----------------")
 
 		if (openConfig.addMode && (openConfig.initialStartup || !this.getLastActiveWindow())) {
 			openConfig.addMode = false; // Make sure addMode is only enabled if we have an active window
@@ -477,6 +481,9 @@ export class WindowsMainService extends Disposable implements IWindowsMainServic
 
 		// Settings can decide if files/folders open in new window or not
 		let { openFolderInNewWindow, openFilesInNewWindow } = this.shouldOpenNewWindow(openConfig);
+
+		console.log('doopen -------------------------------')
+
 
 		// Handle folders to add by looking for the last active workspace (not on initial startup)
 		if (!openConfig.initialStartup && foldersToAdd.length > 0) {

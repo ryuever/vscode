@@ -16,7 +16,6 @@ export function listProcesses(rootPid: number): Promise<ProcessItem> {
 
 
 		function addToTree(pid: number, ppid: number, cmd: string, load: number, mem: number) {
-
 			const parent = map.get(ppid);
 			if (pid === rootPid || parent) {
 
@@ -73,10 +72,10 @@ export function listProcesses(rootPid: number): Promise<ProcessItem> {
 			let matches = TYPE.exec(cmd);
 			if (matches && matches.length === 2) {
 				if (matches[1] === 'renderer') {
-					return `window`;
+					return `windowbbbb`;
 				} else if (matches[1] === 'utility') {
 					if (UTILITY_NETWORK_HINT.exec(cmd)) {
-						return 'utility-network-service';
+						return 'utility-network-service3333';
 					}
 
 					return 'utility-process';
@@ -185,6 +184,7 @@ export function listProcesses(rootPid: number): Promise<ProcessItem> {
 				// JSON.stringify is needed to escape spaces, https://github.com/nodejs/node/issues/6803
 				let cmd = JSON.stringify(FileAccess.asFileUri('vs/base/node/cpuUsage.sh').fsPath);
 				cmd += ' ' + pids.join(' ');
+				console.log('filePath-----', FileAccess.asFileUri('vs/base/node/cpuUsage.sh').fsPath);
 
 				exec(cmd, {}, (err, stdout, stderr) => {
 					if (err || stderr) {
@@ -224,6 +224,7 @@ export function listProcesses(rootPid: number): Promise<ProcessItem> {
 				} else {
 					const ps = stdout.toString().trim();
 					const args = '-ax -o pid=,ppid=,pcpu=,pmem=,command=';
+					// console.log("render-----", ps, args);
 
 					// Set numeric locale to ensure '.' is used as the decimal separator
 					exec(`${ps} ${args}`, { maxBuffer: 1000 * 1024, env: { LC_NUMERIC: 'en_US.UTF-8' } }, (err, stdout, stderr) => {
@@ -232,6 +233,8 @@ export function listProcesses(rootPid: number): Promise<ProcessItem> {
 							reject(err || new Error(stderr.toString()));
 						} else {
 							parsePsOutput(stdout, addToTree);
+							// console.log('rootPid================', rootPid);
+							// console.log('rootItem ', stdout);
 
 							if (process.platform === 'linux') {
 								calculateLinuxCpuUsage();
@@ -255,6 +258,8 @@ function parsePsOutput(stdout: string, addToTree: (pid: number, ppid: number, cm
 	const lines = stdout.toString().split('\n');
 	for (const line of lines) {
 		const matches = PID_CMD.exec(line.trim());
+		// console.log('line------- ', line, matches, matches && matches.length === 6);
+
 		if (matches && matches.length === 6) {
 			addToTree(parseInt(matches[1]), parseInt(matches[2]), matches[5], parseFloat(matches[3]), parseFloat(matches[4]));
 		}

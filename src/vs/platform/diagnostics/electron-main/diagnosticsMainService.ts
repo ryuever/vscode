@@ -94,6 +94,15 @@ export class DiagnosticsMainService implements IDiagnosticsMainService {
 			pidToNames.push({ pid, name });
 		}
 
+		// console.log('diagnositic ', {
+		// 	mainPID: process.pid,
+		// 	mainArguments: process.argv.slice(1),
+		// 	windows,
+		// 	pidToNames,
+		// 	screenReader: !!app.accessibilitySupportEnabled,
+		// 	gpuFeatureStatus: app.getGPUFeatureStatus()
+		// });
+
 		return {
 			mainPID: process.pid,
 			mainArguments: process.argv.slice(1),

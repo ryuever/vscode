@@ -119,6 +119,7 @@ export class IssueMainService implements IIssueMainService {
 		});
 
 		validatedIpcMain.on('vscode:closeProcessExplorer', event => {
+			console.log('event ==============', event)
 			this.processExplorerWindow?.close();
 		});
 
@@ -212,7 +213,7 @@ export class IssueMainService implements IIssueMainService {
 
 				this.processExplorerWindow = this.createBrowserWindow(position, processExplorerWindowConfigUrl, {
 					backgroundColor: data.styles.backgroundColor,
-					title: localize('processExplorer', "Process Explorer"),
+					title: localize('processExplorer', "Process Explorer333"),
 					zoomLevel: data.zoomLevel,
 					alwaysOnTop: true
 				}, 'process-explorer');
@@ -475,11 +476,13 @@ export class IssueMainService implements IIssueMainService {
 
 	private safeSend(event: IpcMainEvent, channel: string, ...args: unknown[]): void {
 		if (!event.sender.isDestroyed()) {
+			// console.log('sender ------ ', event.sender);
 			event.sender.send(channel, ...args);
 		}
 	}
 
 	private createBrowserWindow<T>(position: IWindowState, ipcObjectUrl: IIPCObjectUrl<T>, options: IBrowserWindowOptions, windowKind: string): BrowserWindow {
+		console.log('createExplorer---------------------', options.title);
 		const window = new BrowserWindow({
 			fullscreen: false,
 			skipTaskbar: false,

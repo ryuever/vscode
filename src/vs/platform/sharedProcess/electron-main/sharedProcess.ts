@@ -160,7 +160,7 @@ export class SharedProcess extends Disposable {
 		}
 
 		this.utilityProcess.start({
-			type: 'shared-process',
+			type: 'shared-process222',
 			entryPoint: 'vs/code/node/sharedProcess/sharedProcessMain',
 			payload: this.createSharedProcessConfiguration(),
 			execArgv

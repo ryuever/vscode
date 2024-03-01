@@ -51,7 +51,7 @@ function describeEnvironmentChanges(collection: IMergedEnvironmentVariableCollec
 	const globalDescriptions = collection.getDescriptionMap(undefined);
 	const workspaceDescriptions = collection.getDescriptionMap(scope);
 	for (const [ext, coll] of collection.collections) {
-		content += `\n\n## ${localize('extension', 'Extension: {0}', ext)}`;
+		content += `\n\n## ${localize('extension', 'Extension333: {0}', ext)}`;
 		content += '\n';
 		const globalDescription = globalDescriptions.get(ext);
 		if (globalDescription) {

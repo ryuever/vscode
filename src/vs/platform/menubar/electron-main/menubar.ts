@@ -118,7 +118,9 @@ export class Menubar {
 
 		// File Menu Items
 		this.fallbackMenuHandlers['workbench.action.files.newUntitledFile'] = (menuItem, win, event) => {
+			console.log('fallbackMenuHandlers------------');
 			if (!this.runActionInRenderer({ type: 'commandId', commandId: 'workbench.action.files.newUntitledFile' })) { // this is one of the few supported actions when aux window has focus
+				console.log('this.windowsMainService.openEmptyWindow');
 				this.windowsMainService.openEmptyWindow({ context: OpenContext.MENU, contextWindowId: win?.id });
 			}
 		};

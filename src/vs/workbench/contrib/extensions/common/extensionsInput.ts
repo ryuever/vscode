@@ -50,7 +50,7 @@ export class ExtensionsInput extends EditorInput {
 	get extension(): IExtension { return this._extension; }
 
 	override getName(): string {
-		return localize('extensionsInputName', "Extension: {0}", this._extension.displayName);
+		return localize('extensionsInputName', "Extension222: {0}", this._extension.displayName);
 	}
 
 	override getIcon(): ThemeIcon | undefined {

@@ -863,6 +863,7 @@ function onErrorWithRetry(notificationService: INotificationService, error: unkn
 }
 
 async function openExplorerAndCreate(accessor: ServicesAccessor, isFolder: boolean): Promise<void> {
+	console.log('crate--------------')
 	const explorerService = accessor.get(IExplorerService);
 	const fileService = accessor.get(IFileService);
 	const configService = accessor.get(IConfigurationService);

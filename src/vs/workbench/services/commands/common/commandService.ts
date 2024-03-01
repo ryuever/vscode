@@ -47,6 +47,8 @@ export class CommandService extends Disposable implements ICommandService {
 	}
 
 	async executeCommand<T>(id: string, ...args: any[]): Promise<T> {
+		console.log('executeCommand========')
+
 		this._logService.trace('CommandService#executeCommand', id);
 
 		const activationEvent = `onCommand:${id}`;
