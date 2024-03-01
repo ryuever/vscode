@@ -56,6 +56,7 @@ export class ExtensionsGridView extends Disposable {
 		const extensionContainer = dom.append(this.element, dom.$('.extension-container'));
 		extensionContainer.style.height = `${this.delegate.getHeight()}px`;
 		extensionContainer.setAttribute('tabindex', '0');
+		console.log('renderExtension---------------')
 
 		const template = this.renderer.renderTemplate(extensionContainer);
 		this.disposableStore.add(toDisposable(() => this.renderer.disposeTemplate(template)));
@@ -68,6 +69,8 @@ export class ExtensionsGridView extends Disposable {
 			if (e instanceof StandardKeyboardEvent && e.keyCode !== KeyCode.Enter) {
 				return;
 			}
+
+			console.log('handleEvent------');
 			openExtensionAction.run(e.ctrlKey || e.metaKey);
 			e.stopPropagation();
 			e.preventDefault();
@@ -144,6 +147,7 @@ class ExtensionRenderer implements IListRenderer<ITreeNode<IExtensionData>, IExt
 		const name = dom.append(header, dom.$('span.name'));
 		const openExtensionAction = this.instantiationService.createInstance(OpenExtensionAction);
 		const extensionDisposables = [dom.addDisposableListener(name, 'click', (e: MouseEvent) => {
+			console.log('openExtension-----')
 			openExtensionAction.run(e.ctrlKey || e.metaKey);
 			e.stopPropagation();
 			e.preventDefault();
@@ -225,6 +229,7 @@ class OpenExtensionAction extends Action {
 	}
 
 	override run(sideByside: boolean): Promise<any> {
+		console.log('OpenExtensionAction ====================');
 		if (this._extension) {
 			return this.extensionsWorkdbenchService.open(this._extension, { sideByside });
 		}

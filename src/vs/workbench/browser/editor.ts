@@ -54,6 +54,7 @@ export class EditorPaneDescriptor implements IEditorPaneDescriptor {
 		typeId: string,
 		name: string
 	): EditorPaneDescriptor {
+		console.log('create================');
 		return new EditorPaneDescriptor(ctor as IConstructorSignature<EditorPane>, typeId, name);
 	}
 
@@ -77,6 +78,7 @@ export class EditorPaneRegistry implements IEditorPaneRegistry {
 	private readonly mapEditorPanesToEditors = new Map<EditorPaneDescriptor, readonly SyncDescriptor<EditorInput>[]>();
 
 	registerEditorPane(editorPaneDescriptor: EditorPaneDescriptor, editorDescriptors: readonly SyncDescriptor<EditorInput>[]): IDisposable {
+		console.log('registerEditorPane-----------------');
 		this.mapEditorPanesToEditors.set(editorPaneDescriptor, editorDescriptors);
 
 		return toDisposable(() => {
@@ -85,6 +87,7 @@ export class EditorPaneRegistry implements IEditorPaneRegistry {
 	}
 
 	getEditorPane(editor: EditorInput): EditorPaneDescriptor | undefined {
+		console.log('getEditorPane-----------------');
 		const descriptors = this.findEditorPaneDescriptors(editor);
 
 		if (descriptors.length === 0) {

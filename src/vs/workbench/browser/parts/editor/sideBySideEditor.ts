@@ -349,6 +349,8 @@ export class SideBySideEditor extends AbstractEditorWithViewState<ISideBySideEdi
 			throw new Error('No editor pane descriptor for editor found');
 		}
 
+		console.log('doCreateEditor ------')
+
 		// Create editor pane and make visible
 		const editorPane = editorPaneDescriptor.instantiate(this.instantiationService);
 		editorPane.create(container);

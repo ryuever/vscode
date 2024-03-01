@@ -128,6 +128,7 @@ export class EditorPanes extends Disposable {
 	}
 
 	async openEditor(editor: EditorInput, options: IEditorOptions | undefined, internalOptions: IInternalEditorOpenOptions | undefined, context: IEditorOpenContext = Object.create(null)): Promise<IOpenEditorResult> {
+		console.log('openEditor-----');
 		try {
 
 			// Assert the `EditorInputCapabilities.AuxWindowUnsupported` condition
@@ -266,8 +267,10 @@ export class EditorPanes extends Disposable {
 		// Remember current active element for deciding to restore focus later
 		const activeElement = getActiveElement();
 
-		// Apply input to pane
+		// Apply input to pane；这个时候将webview挂载上去了
 		const { changed, cancelled } = await this.doSetInput(pane, editor, options, context);
+		// 上面那一步执行以后，renderer process就出来了。。
+		return;
 
 		// Make sure to pass focus to the pane or otherwise
 		// make sure that the pane window is visible unless
@@ -327,6 +330,7 @@ export class EditorPanes extends Disposable {
 			// editor.
 			return WorkspaceTrustRequiredPlaceholderEditor.DESCRIPTOR;
 		}
+		console.log("getEditorPaneDescriptor======");
 
 		return assertIsDefined(this.editorPanesRegistry.getEditorPane(editor));
 	}
@@ -441,8 +445,12 @@ export class EditorPanes extends Disposable {
 			// load (https://github.com/microsoft/vscode/issues/34697)
 			editorPane.clearInput();
 
+			debugger
+
 			// Set the input to the editor pane
 			await editorPane.setInput(editor, options, context, operation.token);
+
+			return {}
 
 			if (!operation.isCurrent()) {
 				cancelled = true;
@@ -456,6 +464,7 @@ export class EditorPanes extends Disposable {
 		} finally {
 			operation.stop();
 		}
+
 
 		return { changed: !inputMatches, cancelled };
 	}

@@ -79,6 +79,9 @@ export class Renderer implements IPagedRenderer<IExtension, ITemplateData> {
 		const recommendationWidget = this.instantiationService.createInstance(RecommendationWidget, append(root, $('.extension-bookmark-container')));
 		const preReleaseWidget = this.instantiationService.createInstance(PreReleaseBookmarkWidget, append(root, $('.extension-bookmark-container')));
 		const element = append(root, $('.extension-list-item'));
+
+		console.log('renderItem ------------');
+
 		const iconContainer = append(element, $('.icon-container'));
 		const icon = append(iconContainer, $<HTMLImageElement>('img.icon', { alt: '' }));
 		const iconRemoteBadgeWidget = this.instantiationService.createInstance(RemoteBadgeWidget, iconContainer, false);

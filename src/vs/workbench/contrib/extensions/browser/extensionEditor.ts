@@ -435,6 +435,7 @@ export class ExtensionEditor extends EditorPane {
 	}
 
 	override async setInput(input: ExtensionsInput, options: IExtensionEditorOptions | undefined, context: IEditorOpenContext, token: CancellationToken): Promise<void> {
+		console.log('setInput=========');
 		await super.setInput(input, options, context, token);
 		this.updatePreReleaseVersionContext();
 		if (this.template) {
