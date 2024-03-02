@@ -108,6 +108,7 @@ class WorkbenchHostService extends Disposable implements IHostService {
 
 	private doOpenWindow(toOpen: IWindowOpenable[], options?: IOpenWindowOptions): Promise<void> {
 		const remoteAuthority = this.environmentService.remoteAuthority;
+		console.log("🚀 ~ WorkbenchHostService ~ doOpenWindow ~ remoteAuthority:", remoteAuthority);
 		if (!!remoteAuthority) {
 			toOpen.forEach(openable => openable.label = openable.label || this.getRecentLabel(openable));
 

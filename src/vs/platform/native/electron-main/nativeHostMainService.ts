@@ -185,6 +185,8 @@ export class NativeHostMainService extends Disposable implements INativeHostMain
 
 	private async doOpenWindow(windowId: number | undefined, toOpen: IWindowOpenable[], options: IOpenWindowOptions = Object.create(null)): Promise<void> {
 		if (toOpen.length > 0) {
+			console.log("🚀 ~ NativeHostMainService ~ doOpenWindow ~ toOpen:", toOpen);
+
 			await this.windowsMainService.open({
 				context: OpenContext.API,
 				contextWindowId: windowId,
@@ -789,6 +791,7 @@ export class NativeHostMainService extends Disposable implements INativeHostMain
 
 	async toggleDevTools(windowId: number | undefined): Promise<void> {
 		const window = this.getTargetWindow(windowId);
+		console.log("🚀 ~ NativeHostMainService ~ toggleDevTools ~ window:", window)
 
 		window?.win?.webContents.toggleDevTools();
 	}

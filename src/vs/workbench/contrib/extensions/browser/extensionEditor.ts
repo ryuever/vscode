@@ -493,6 +493,8 @@ export class ExtensionEditor extends EditorPane {
 		this.activeElement = null;
 		this.transientDisposables.clear();
 
+		debugger
+
 		const token = this.transientDisposables.add(new CancellationTokenSource()).token;
 
 		const gallery = await this.getGalleryVersionToShow(extension, (this.options as IExtensionEditorOptions)?.showPreReleaseVersion);
@@ -551,9 +553,11 @@ export class ExtensionEditor extends EditorPane {
 		// report telemetry
 		const extRecommendations = this.extensionRecommendationsService.getAllRecommendationsWithReason();
 		let recommendationsData = {};
+		console.log("🚀 ~ ExtensionEditor ~ render ~ recommendationsData:", recommendationsData);
 		if (extRecommendations[extension.identifier.id.toLowerCase()]) {
 			recommendationsData = { recommendationReason: extRecommendations[extension.identifier.id.toLowerCase()].reasonId };
 		}
+
 		/* __GDPR__
 		"extensionGallery:openExtension" : {
 			"owner": "sandy081",

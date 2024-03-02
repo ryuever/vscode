@@ -128,6 +128,7 @@ export class EditorPanes extends Disposable {
 	}
 
 	async openEditor(editor: EditorInput, options: IEditorOptions | undefined, internalOptions: IInternalEditorOpenOptions | undefined, context: IEditorOpenContext = Object.create(null)): Promise<IOpenEditorResult> {
+		debugger
 		console.log('openEditor-----');
 		try {
 
@@ -269,6 +270,7 @@ export class EditorPanes extends Disposable {
 
 		// Apply input to pane；这个时候将webview挂载上去了
 		const { changed, cancelled } = await this.doSetInput(pane, editor, options, context);
+		debugger
 		// 上面那一步执行以后，renderer process就出来了。。
 		return;
 

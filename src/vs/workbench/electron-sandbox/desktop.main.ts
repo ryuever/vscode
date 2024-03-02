@@ -298,6 +298,7 @@ export class DesktopMain extends Disposable {
 				return service;
 			}),
 
+
 			this.createKeyboardLayoutService(mainProcessService).then(service => {
 
 				// KeyboardLayout

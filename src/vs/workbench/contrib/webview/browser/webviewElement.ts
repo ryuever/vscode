@@ -348,7 +348,9 @@ export class WebviewElement extends Disposable implements IWebview, WebviewFindD
 
 		this._encodedWebviewOriginPromise.then(encodedWebviewOrigin => {
 			if (!this._disposed) {
+				debugger
 				this._initElement(encodedWebviewOrigin, this.extension, this._options);
+				debugger
 			}
 		});
 	}
@@ -482,6 +484,8 @@ export class WebviewElement extends Disposable implements IWebview, WebviewFindD
 
 		// Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1754872
 		const fileName = isFirefox ? 'index-no-csp.html' : 'index.html';
+
+		console.log("🚀 ~ WebviewElement ~ _initElement ~ queryString:", `${this.webviewContentEndpoint(encodedWebviewOrigin)}/${fileName}?${queryString}`)
 
 		this.element!.setAttribute('src', `${this.webviewContentEndpoint(encodedWebviewOrigin)}/${fileName}?${queryString}`);
 	}

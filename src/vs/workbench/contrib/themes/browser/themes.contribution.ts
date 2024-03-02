@@ -526,6 +526,7 @@ function configurationEntries(label: string): QuickPickInput<ThemeItem>[] {
 }
 
 function openExtensionViewlet(paneCompositeService: IPaneCompositePartService, query: string) {
+	console.log('open extension viewlet-----------')
 	return paneCompositeService.openPaneComposite(VIEWLET_ID, ViewContainerLocation.Sidebar, true).then(viewlet => {
 		if (viewlet) {
 			(viewlet?.getViewPaneContainer() as IExtensionsViewPaneContainer).search(query);
