@@ -297,6 +297,9 @@ export class WebClientServer {
 
 		const resolveWorkspaceURI = (defaultLocation?: string) => defaultLocation && URI.file(path.resolve(defaultLocation)).with({ scheme: Schemas.vscodeRemote, authority: remoteAuthority });
 
+		console.log('workbench-dev.html++++++++++++++++++++++++++++++')
+		// debugger
+
 		const filePath = FileAccess.asFileUri(this._environmentService.isBuilt ? 'vs/code/browser/workbench/workbench.html' : 'vs/code/browser/workbench/workbench-dev.html').fsPath;
 		const authSessionInfo = !this._environmentService.isBuilt && this._environmentService.args['github-auth'] ? {
 			id: generateUuid(),
@@ -395,6 +398,8 @@ export class WebClientServer {
 				}
 			);
 		}
+
+		console.log('workbench=========================================')
 
 		res.writeHead(200, headers);
 		return void res.end(data);

@@ -50,6 +50,7 @@ export class UtilityProcessWorkerMainService extends Disposable implements IUtil
 		}
 
 		// Create new worker
+		console.log("🚀 ~ UtilityProcessWorkerMainService ~ createWorker ~ configuration:", configuration)
 		const worker = new UtilityProcessWorker(this.logService, this.windowsMainService, this.telemetryService, this.lifecycleMainService, configuration);
 		if (!worker.spawn()) {
 			return { reason: { code: 1, signal: 'EINVALID' } };
@@ -120,6 +121,16 @@ class UtilityProcessWorker extends Disposable {
 	spawn(): boolean {
 		const window = this.windowsMainService.getWindowById(this.configuration.reply.windowId);
 		const windowPid = window?.win?.webContents.getOSProcessId();
+		console.log("🚀 ~ UtilityProcessWorker ~ spawn ~ windowPid:", {
+			type: this.configuration.process.type,
+			entryPoint: this.configuration.process.moduleId,
+			parentLifecycleBound: windowPid,
+			windowLifecycleBound: true,
+			correlationId: `${this.configuration.reply.windowId}`,
+			responseWindowId: this.configuration.reply.windowId,
+			responseChannel: this.configuration.reply.channel,
+			responseNonce: this.configuration.reply.nonce
+		})
 
 		return this.utilityProcess.start({
 			type: this.configuration.process.type,
