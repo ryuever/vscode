@@ -49,6 +49,8 @@ export class ProtocolMainService extends Disposable implements IProtocolMainServ
 	private handleProtocols(): void {
 		const { defaultSession } = session;
 
+		console.log('Schemas.vscodeFileResource ', Schemas.vscodeFileResource)
+
 		// Register vscode-file:// handler
 		defaultSession.protocol.registerFileProtocol(Schemas.vscodeFileResource, (request, callback) => this.handleResourceRequest(request, callback));
 
@@ -94,10 +96,17 @@ export class ProtocolMainService extends Disposable implements IProtocolMainServ
 	private handleResourceRequest(request: Electron.ProtocolRequest, callback: ProtocolCallback): void {
 		const path = this.requestToNormalizedFilePath(request);
 
+		// console.log('path -----------------', this.environmentService.crossOriginIsolated)
+
+
 		let headers: Record<string, string> | undefined;
 		if (this.environmentService.crossOriginIsolated) {
 			if (basename(path) === 'workbench.html' || basename(path) === 'workbench-dev.html') {
 				headers = COI.CoopAndCoep;
+				return
+
+				console.log('header ------- ', headers)
+
 			} else {
 				headers = COI.getHeadersFromQuery(request.url);
 			}

@@ -233,8 +233,19 @@ export class UtilityProcess extends Disposable {
 		const forceAllocationsToV8Sandbox = this.configuration.forceAllocationsToV8Sandbox;
 		const stdio = 'pipe';
 		const env = this.createEnv(configuration);
+		console.log("🚀 ~ UtilityProcess ~ doStart ~ env:", {
+			args,
+			serviceName,
+			env,
+			execArgv,
+			allowLoadingUnsignedLibraries,
+			forceAllocationsToV8Sandbox,
+			stdio
+		})
 
 		this.log('creating new...', Severity.Info);
+
+		
 
 		// Fork utility process
 		this.process = utilityProcess.fork(modulePath, args, {
@@ -469,7 +480,12 @@ export class WindowUtilityProcess extends UtilityProcess {
 
 		// Establish & exchange message ports
 		const windowPort = this.connect(configuration.payload);
+		console.log("🚀 ~ WindowUtilityProcess ~ overridestart ~ windowPort:", {
+			...configuration
+		})
 		responseWindow.win.webContents.postMessage(configuration.responseChannel, configuration.responseNonce, [windowPort]);
+
+		
 
 		return true;
 	}

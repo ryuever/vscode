@@ -202,6 +202,7 @@
 			 * @param {string} nonce
 			 */
 			acquire(responseChannel, nonce) {
+				console.log("🚀 ~ acquire ~ responseChannel:", responseChannel)
 				if (validateIPC(responseChannel)) {
 					const responseListener = (/** @type {IpcRendererEvent} */ e, /** @type {string} */ responseNonce) => {
 						// validate that the nonce from the response is the same

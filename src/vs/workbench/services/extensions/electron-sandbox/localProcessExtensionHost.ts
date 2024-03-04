@@ -351,6 +351,7 @@ export class NativeLocalProcessExtensionHost implements IExtensionHost {
 	}
 
 	private _establishProtocol(extensionHostProcess: ExtensionHostProcess, opts: IExtensionHostProcessOptions): Promise<IMessagePassingProtocol> {
+	console.log("🚀 ~ NativeLocalProcessExtensionHost ~ _establishProtocol ~ opts:", extensionHostProcess.moduleId, opts.responseWindowId)
 
 		writeExtHostConnection(new MessagePortExtHostConnection(), opts.env);
 

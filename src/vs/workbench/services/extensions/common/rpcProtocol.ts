@@ -294,7 +294,7 @@ export class RPCProtocol extends Disposable implements IRPCProtocol {
 			case MessageType.RequestJSONArgsWithCancellation: {
 				
 				let { rpcId, method, args } = MessageIO.deserializeRequestJSONArgs(buff);
-				console.log("🚀 ~ RPCProtocol ~ _receiveOneMessage ~ req:", req, buff, rpcId, method, args)
+				// console.log("🚀 ~ RPCProtocol ~ _receiveOneMessage ~ req:", req, rpcId, method, args)
 
 				if (this._uriTransformer) {
 					args = transformIncomingURIs(args, this._uriTransformer);

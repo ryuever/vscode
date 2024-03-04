@@ -168,6 +168,9 @@ class RemoteExtensionHostAgentServer extends Disposable implements IServerAPI {
 			if (requestOrigin && this._webEndpointOriginChecker.matches(requestOrigin)) {
 				responseHeaders['Access-Control-Allow-Origin'] = requestOrigin;
 			}
+
+			console.log('web clinet ================')
+
 			return serveFile(filePath, CacheControl.ETAG, this._logService, req, res, responseHeaders);
 		}
 
@@ -776,6 +779,7 @@ export async function createServer(address: string | net.AddressInfo | null, arg
 		return null;
 	});
 
+	console.log('hasWebClient ==========================')
 	const hasWebClient = fs.existsSync(FileAccess.asFileUri('vs/code/browser/workbench/workbench.html').fsPath);
 
 	if (hasWebClient && address && typeof address !== 'string') {
