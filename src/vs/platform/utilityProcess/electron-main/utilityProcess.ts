@@ -245,8 +245,6 @@ export class UtilityProcess extends Disposable {
 
 		this.log('creating new...', Severity.Info);
 
-		
-
 		// Fork utility process
 		this.process = utilityProcess.fork(modulePath, args, {
 			serviceName,
@@ -485,7 +483,7 @@ export class WindowUtilityProcess extends UtilityProcess {
 		})
 		responseWindow.win.webContents.postMessage(configuration.responseChannel, configuration.responseNonce, [windowPort]);
 
-		
+
 
 		return true;
 	}

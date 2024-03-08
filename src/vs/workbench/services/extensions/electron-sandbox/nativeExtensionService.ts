@@ -536,6 +536,12 @@ class NativeExtensionHostFactory implements IExtensionHostFactory {
 	}
 
 	public createExtensionHost(runningLocations: ExtensionRunningLocationTracker, runningLocation: ExtensionRunningLocation, isInitialStart: boolean): IExtensionHost | null {
+		console.log("🚀 ~ NativeExtensionHostFactory ~ createExtensionHost ~ createExtensionHost:", runningLocation.kind)
+
+		if (runningLocation.kind === ExtensionHostKind.Remote) {
+			console.log("🚀 ~ NativeExtensionHostFactory ~ createExtensionHost ~ runningLocation:", this)
+		}
+
 		switch (runningLocation.kind) {
 			case ExtensionHostKind.LocalProcess: {
 				const startup = (

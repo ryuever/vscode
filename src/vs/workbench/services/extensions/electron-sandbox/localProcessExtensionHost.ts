@@ -60,6 +60,7 @@ export class ExtensionHostProcess {
 	}
 
 	public get onMessage(): Event<any> {
+		console.log('on meeage----------------', this._id);
 		return this._extensionHostStarter.onDynamicMessage(this._id);
 	}
 
@@ -387,7 +388,11 @@ export class NativeLocalProcessExtensionHost implements IExtensionHost {
 
 			// Now that the message port listener is installed, start the ext host process
 			const sw = StopWatch.create(false);
+
+
+
 			extensionHostProcess.start(opts).then(({ pid }) => {
+				console.log("🚀 ~ NativeLocalProcessExtensionHost ~ extensionHostProcess.start ~ opts:", opts)
 				if (pid) {
 					this.pid = pid;
 				}

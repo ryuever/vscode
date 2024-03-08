@@ -227,6 +227,7 @@ class BrowserExtensionHostFactory implements IExtensionHostFactory {
 	) { }
 
 	createExtensionHost(runningLocations: ExtensionRunningLocationTracker, runningLocation: ExtensionRunningLocation, isInitialStart: boolean): IExtensionHost | null {
+		console.log("🚀 ~ BrowserExtensionHostFactory ~ createExtensionHost ~ runningLocation.kind:", runningLocation.kind);
 		switch (runningLocation.kind) {
 			case ExtensionHostKind.LocalProcess: {
 				return null;

@@ -237,7 +237,7 @@ export class BrowserHostService extends Disposable implements IHostService {
 
 	private async doOpenWindow(toOpen: IWindowOpenable[], options?: IOpenWindowOptions): Promise<void> {
 		const payload = this.preservePayload(false /* not an empty window */);
-		console.log("🚀 ~ BrowserHostService ~ doOpenWindow ~ payload:", payload);
+		// console.log("🚀 ~ BrowserHostService ~ doOpenWindow ~ payload:", payload);
 
 		const fileOpenables: IFileToOpen[] = [];
 		const foldersToAdd: IWorkspaceFolderCreationData[] = [];

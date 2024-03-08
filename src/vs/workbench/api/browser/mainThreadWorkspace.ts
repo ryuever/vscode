@@ -56,6 +56,8 @@ export class MainThreadWorkspace implements MainThreadWorkspaceShape {
 	) {
 		this._proxy = extHostContext.getProxy(ExtHostContext.ExtHostWorkspace);
 		const workspace = this._contextService.getWorkspace();
+		console.log("🚀 ~ MainThreadWorkspace ~ workspace:", workspace);
+
 		// The workspace file is provided be a unknown file system provider. It might come
 		// from the extension host. So initialize now knowing that `rootPath` is undefined.
 		if (workspace.configuration && !isNative && !fileService.hasProvider(workspace.configuration)) {

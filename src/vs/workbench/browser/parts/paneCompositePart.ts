@@ -360,6 +360,8 @@ export abstract class AbstractPaneCompositePart extends CompositePart<PaneCompos
 	}
 
 	async openPaneComposite(id?: string, focus?: boolean): Promise<PaneComposite | undefined> {
+		console.log("🚀 ~ AbstractPaneCompositePart ~ openPaneComposite ~ id:", id);
+
 		if (typeof id === 'string' && this.getPaneComposite(id)) {
 			return this.doOpenPaneComposite(id, focus);
 		}
@@ -391,6 +393,9 @@ export abstract class AbstractPaneCompositePart extends CompositePart<PaneCompos
 	}
 
 	getPaneComposite(id: string): PaneCompositeDescriptor | undefined {
+		const paneComposite = (this.registry as PaneCompositeRegistry).getPaneComposite(id)
+		console.log("🚀 ~ AbstractPaneCompositePart ~ getPaneComposite ~ paneComposite:", paneComposite)
+
 		return (this.registry as PaneCompositeRegistry).getPaneComposite(id);
 	}
 

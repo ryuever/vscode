@@ -214,6 +214,8 @@ export class AuthenticationService extends Disposable implements IAuthentication
 	) {
 		super();
 
+		console.log("🚀 ~ AuthenticationService ~ authenticationExtPoint.setHandler ~ authenticationExtPoint:", authenticationExtPoint);
+
 		environmentService.options?.authenticationProviders?.forEach(provider => this.registerAuthenticationProvider(provider.id, provider));
 		authenticationExtPoint.setHandler((extensions, { added, removed }) => {
 			added.forEach(point => {

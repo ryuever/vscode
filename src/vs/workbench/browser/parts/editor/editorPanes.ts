@@ -270,9 +270,7 @@ export class EditorPanes extends Disposable {
 
 		// Apply input to pane；这个时候将webview挂载上去了
 		const { changed, cancelled } = await this.doSetInput(pane, editor, options, context);
-		debugger
 		// 上面那一步执行以后，renderer process就出来了。。
-		return;
 
 		// Make sure to pass focus to the pane or otherwise
 		// make sure that the pane window is visible unless

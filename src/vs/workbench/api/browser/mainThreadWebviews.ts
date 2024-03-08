@@ -39,8 +39,8 @@ export class MainThreadWebviews extends Disposable implements extHostProtocol.Ma
 		@IProductService private readonly _productService: IProductService,
 	) {
 		super();
-
 		this._proxy = context.getProxy(extHostProtocol.ExtHostContext.ExtHostWebviews);
+		console.log("🚀 ~ MainThreadWebviews ~ this._proxy:", this._proxy);
 	}
 
 	public addWebview(handle: extHostProtocol.WebviewHandle, webview: IOverlayWebview, options: { serializeBuffersForPostMessage: boolean }): void {

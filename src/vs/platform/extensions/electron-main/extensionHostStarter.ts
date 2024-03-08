@@ -70,6 +70,8 @@ export class ExtensionHostStarter implements IDisposable, IExtensionHostStarter 
 			throw canceled();
 		}
 		const id = String(++ExtensionHostStarter._lastId);
+		console.log("🚀 ~ ExtensionHostStarter ~ createExtensionHost ~ id:", id)
+
 		const extHost = new WindowUtilityProcess(this._logService, this._windowsMainService, this._telemetryService, this._lifecycleMainService);
 		this._extHosts.set(id, extHost);
 		extHost.onExit(({ pid, code, signal }) => {

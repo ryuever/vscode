@@ -26,6 +26,8 @@ export function registerSingleton<T, Services extends BrandedService[]>(id: Serv
 export function registerSingleton<T, Services extends BrandedService[]>(id: ServiceIdentifier<T>, descriptor: SyncDescriptor<any>): void;
 export function registerSingleton<T, Services extends BrandedService[]>(id: ServiceIdentifier<T>, ctorOrDescriptor: { new(...services: Services): T } | SyncDescriptor<any>, supportsDelayedInstantiation?: boolean | InstantiationType): void {
 	if (!(ctorOrDescriptor instanceof SyncDescriptor)) {
+		// console.log("🚀 ~ registerSingleton<T,ServicesextendsBrandedService[]> ~ ctorOrDescriptor:", id, ctorOrDescriptor.name);
+
 		ctorOrDescriptor = new SyncDescriptor<T>(ctorOrDescriptor as new (...args: any[]) => T, [], Boolean(supportsDelayedInstantiation));
 	}
 

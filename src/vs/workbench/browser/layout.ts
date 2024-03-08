@@ -285,6 +285,8 @@ export abstract class Layout extends Disposable implements IWorkbenchLayoutServi
 		protected readonly parent: HTMLElement
 	) {
 		super();
+
+		console.log("🚀 ~ Layout ~ super:", this);
 	}
 
 	protected initLayout(accessor: ServicesAccessor): void {
@@ -1012,6 +1014,8 @@ export abstract class Layout extends Disposable implements IWorkbenchLayoutServi
 			mark('code/willRestoreViewlet');
 
 			const viewlet = await this.paneCompositeService.openPaneComposite(this.state.initialization.views.containerToRestore.sideBar, ViewContainerLocation.Sidebar);
+			console.log("🚀 ~ Layout ~ layoutReadyPromises.push ~ viewlet:", viewlet)
+
 			if (!viewlet) {
 				await this.paneCompositeService.openPaneComposite(this.viewDescriptorService.getDefaultViewContainer(ViewContainerLocation.Sidebar)?.id, ViewContainerLocation.Sidebar); // fallback to default viewlet as needed
 			}

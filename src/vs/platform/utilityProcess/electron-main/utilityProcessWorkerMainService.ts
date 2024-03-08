@@ -109,6 +109,7 @@ class UtilityProcessWorker extends Disposable {
 		private readonly configuration: IUtilityProcessWorkerCreateConfiguration
 	) {
 		super();
+		console.log('testing -----------------------');
 
 		this.registerListeners();
 	}
