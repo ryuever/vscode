@@ -175,6 +175,8 @@ export class UtilityProcess extends Disposable {
 		@ILifecycleMainService protected readonly lifecycleMainService: ILifecycleMainService
 	) {
 		super();
+		console.log("🚀 ~ UtilityProcess ~ super:");
+		
 	}
 
 	protected log(msg: string, severity: Severity): void {
@@ -233,15 +235,15 @@ export class UtilityProcess extends Disposable {
 		const forceAllocationsToV8Sandbox = this.configuration.forceAllocationsToV8Sandbox;
 		const stdio = 'pipe';
 		const env = this.createEnv(configuration);
-		console.log("🚀 ~ UtilityProcess ~ doStart ~ env:", {
-			args,
-			serviceName,
-			env,
-			execArgv,
-			allowLoadingUnsignedLibraries,
-			forceAllocationsToV8Sandbox,
-			stdio
-		})
+		// console.log("🚀 ~ UtilityProcess ~ doStart ~ env:", {
+		// 	args,
+		// 	serviceName,
+		// 	env,
+		// 	execArgv,
+		// 	allowLoadingUnsignedLibraries,
+		// 	forceAllocationsToV8Sandbox,
+		// 	stdio
+		// })
 
 		this.log('creating new...', Severity.Info);
 
@@ -383,6 +385,7 @@ export class UtilityProcess extends Disposable {
 	}
 
 	connect(payload?: unknown): Electron.MessagePortMain {
+		console.log("🚀 ~ UtilityProcess ~ connect ~ payload:", payload)
 		const { port1: outPort, port2: utilityProcessPort } = new MessageChannelMain();
 		this.postMessage(payload, [utilityProcessPort]);
 
@@ -480,9 +483,9 @@ export class WindowUtilityProcess extends UtilityProcess {
 
 		// Establish & exchange message ports
 		const windowPort = this.connect(configuration.payload);
-		console.log("🚀 ~ WindowUtilityProcess ~ overridestart ~ windowPort:", {
-			...configuration
-		})
+		// console.log("🚀 ~ WindowUtilityProcess ~ overridestart ~ windowPort:", {
+		// 	...configuration
+		// })
 		responseWindow.win.webContents.postMessage(configuration.responseChannel, configuration.responseNonce, [windowPort]);
 
 		

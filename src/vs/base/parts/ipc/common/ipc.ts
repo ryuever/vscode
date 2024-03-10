@@ -368,6 +368,8 @@ export class ChannelServer<TContext = string> implements IChannelServer<TContext
 	}
 
 	private send(header: any, body: any = undefined): number {
+		console.log("🚀 ~ ChannelServer<TContext ~ send ~ header:", header, body)
+		
 		const writer = new BufferWriter();
 		serialize(writer, header);
 		serialize(writer, body);
@@ -389,6 +391,9 @@ export class ChannelServer<TContext = string> implements IChannelServer<TContext
 		const header = deserialize(reader);
 		const body = deserialize(reader);
 		const type = header[0] as RequestType;
+
+		console.log("🚀 ~ ChannelServer<TContext ~ onRawMessage ~ message:", header, body, type)
+
 
 		switch (type) {
 			case RequestType.Promise:
@@ -418,6 +423,8 @@ export class ChannelServer<TContext = string> implements IChannelServer<TContext
 		let promise: Promise<any>;
 
 		try {
+			console.log("🚀 ~ StorageDatabaseChannel ~ call ~ items: before------")
+
 			promise = channel.call(this.ctx, request.name, request.arg, cancellationTokenSource.token);
 		} catch (err) {
 			promise = Promise.reject(err);
@@ -555,6 +562,8 @@ export class ChannelClient implements IChannelClient, IDisposable {
 
 		return {
 			call(command: string, arg?: any, cancellationToken?: CancellationToken) {
+				console.log("🚀 ~ ChannelClient ~ call ~ command:", command)
+				
 				if (that.isDisposed) {
 					return Promise.reject(new CancellationError());
 				}
@@ -847,6 +856,7 @@ export class IPCServer<TContext = string> implements IChannelServer<TContext>, I
 
 		return {
 			call(command: string, arg?: any, cancellationToken?: CancellationToken): Promise<T> {
+				console.log("🚀 ~ IPCServer<TContext ~ call ~ command:", command)
 				let connectionPromise: Promise<Client<TContext>>;
 
 				if (isFunction(routerOrClientFilter)) {
@@ -1119,6 +1129,7 @@ export namespace ProxyChannel {
 			}
 
 			call(_: unknown, command: string, args?: any[]): Promise<any> {
+				console.log("🚀 ~ implements ~ call ~ command:", command)
 				const target = handler[command];
 				if (typeof target === 'function') {
 

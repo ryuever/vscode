@@ -27,7 +27,9 @@ export class MainThreadChat extends Disposable implements MainThreadChatShape {
 		@IChatContributionService private readonly chatContribService: IChatContributionService,
 	) {
 		super();
+		
 		this._proxy = extHostContext.getProxy(ExtHostContext.ExtHostChat);
+		console.log("🚀 ~ MainThreadChat ~ extHostContext:", extHostContext)
 	}
 
 	$transferChatSession(sessionId: number, toWorkspace: UriComponents): void {
@@ -43,6 +45,7 @@ export class MainThreadChat extends Disposable implements MainThreadChatShape {
 
 	async $registerChatProvider(handle: number, id: string): Promise<void> {
 		const registration = this.chatContribService.registeredProviders.find(staticProvider => staticProvider.id === id);
+		console.log("🚀 ~ MainThreadChat ~ $registerChatProvider ~ registration:", registration)
 		if (!registration) {
 			throw new Error(`Provider ${id} must be declared in the package.json.`);
 		}

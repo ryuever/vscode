@@ -122,6 +122,7 @@ class WorkbenchContributionsRegistry implements IWorkbenchContributionsRegistry 
 					mark(`code/willCreateWorkbenchContributions/${phase}`);
 
 					for (const contribution of contributions) {
+						console.log("🚀 ~ WorkbenchContributionsRegistry ~ safeCreateContribution ~ contribution:", contribution)
 						this.safeCreateContribution(instantiationService, logService, environmentService, contribution, phase);
 					}
 

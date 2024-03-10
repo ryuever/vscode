@@ -32,6 +32,7 @@ export class MainThreadChatProvider implements MainThreadChatProviderShape {
 	}
 
 	$registerProvider(handle: number, identifier: string, metadata: IChatResponseProviderMetadata): void {
+
 		const registration = this._chatProviderService.registerChatResponseProvider(identifier, {
 			metadata,
 			provideChatResponse: async (messages, options, progress, token) => {
@@ -44,6 +45,8 @@ export class MainThreadChatProvider implements MainThreadChatProviderShape {
 				}
 			}
 		});
+		console.log("🚀 ~ MainThreadChatProvider ~ $registerProvider ~ registration:", registration)
+		
 		this._providerRegistrations.set(handle, registration);
 	}
 

@@ -581,6 +581,8 @@ class StartTrackDisposables extends Action2 {
 		trackedDisposables.clear();
 
 		tracker = new DisposableTracker();
+		console.log("🚀 ~ StartTrackDisposables ~ run ~ tracker:", tracker)
+
 		setDisposableTracker(tracker);
 	}
 }
@@ -641,6 +643,7 @@ class StopTrackDisposables extends Action2 {
 		setDisposableTracker(null);
 		tracker = undefined;
 		trackedDisposables.clear();
+		console.log("🚀 ~ StopTrackDisposables ~ run ~ trackedDisposables:", trackedDisposables)
 	}
 }
 
@@ -650,6 +653,9 @@ registerAction2(ToggleScreencastModeAction);
 registerAction2(LogStorageAction);
 registerAction2(LogWorkingCopiesAction);
 registerAction2(RemoveLargeStorageEntriesAction);
+
+console.log("🚀 ~ product.commit:", product.commit)
+
 if (!product.commit) {
 	registerAction2(StartTrackDisposables);
 	registerAction2(SnapshotTrackedDisposables);

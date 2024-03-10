@@ -100,11 +100,15 @@ export class ExtHostChatProvider implements ExtHostChatProviderShape {
 		private readonly _logService: ILogService,
 	) {
 		this._proxy = mainContext.getProxy(MainContext.MainThreadChatProvider);
+		console.log("🚀 ~ ExtHostChatProvider ~ this._proxy:", this._proxy)
+		
 	}
 
 	registerProvider(extension: ExtensionIdentifier, identifier: string, provider: vscode.ChatResponseProvider, metadata: vscode.ChatResponseProviderMetadata): IDisposable {
 
 		const handle = ExtHostChatProvider._idPool++;
+		console.log("🚀 ~ ExtHostChatProvider ~ registerProvider ~ handle:", handle)
+		
 		this._providers.set(handle, { extension, provider });
 		this._proxy.$registerProvider(handle, identifier, { extension, model: metadata.name ?? '' });
 

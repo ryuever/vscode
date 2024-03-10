@@ -85,6 +85,7 @@ export class ViewDescriptorService extends Disposable implements IViewDescriptor
 		this.defaultViewContainerLocationContextKeys = new Map<string, IContextKey<boolean>>();
 
 		this.viewContainersRegistry = Registry.as<IViewContainersRegistry>(ViewExtensions.ViewContainersRegistry);
+		console.log("🚀 ~ ViewDescriptorService ~ this.viewContainersRegistry:", this.viewContainersRegistry)
 		this.viewsRegistry = Registry.as<IViewsRegistry>(ViewExtensions.ViewsRegistry);
 
 		this.migrateToViewsCustomizationsStorage();
@@ -101,6 +102,8 @@ export class ViewDescriptorService extends Disposable implements IViewDescriptor
 		this._register(this.viewsRegistry.onDidChangeContainer(({ views, from, to }) => this.onDidChangeDefaultContainer(views, from, to)));
 
 		this._register(this.viewContainersRegistry.onDidRegister(({ viewContainer }) => {
+			console.log("🚀 ~ ViewDescriptorService ~ this._register ~ viewContainer:", viewContainer)
+			
 			this.onDidRegisterViewContainer(viewContainer);
 			this._onDidChangeViewContainers.fire({ added: [{ container: viewContainer, location: this.getViewContainerLocation(viewContainer) }], removed: [] });
 		}));

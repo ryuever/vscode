@@ -984,6 +984,8 @@ export class CodeApplication extends Disposable {
 	}
 
 	private setupSharedProcess(machineId: string, sqmId: string): { sharedProcessReady: Promise<MessagePortClient>; sharedProcessClient: Promise<MessagePortClient> } {
+		console.log("🚀 ~ UtilityProcess init ~ setupSharedProcess:")
+
 		const sharedProcess = this._register(this.mainInstantiationService.createInstance(SharedProcess, machineId, sqmId));
 
 		const sharedProcessClient = (async () => {

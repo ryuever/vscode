@@ -131,6 +131,8 @@ export class PaneCompositeBar extends Disposable {
 	}
 
 	private createCompositeBar(cachedItems: ICompositeBarItem[]) {
+		console.log("🚀 ~ PaneCompositeBar ~ createCompositeBar ~ cachedItems:", cachedItems.slice(), this.options);
+		
 		return this._register(this.instantiationService.createInstance(CompositeBar, cachedItems, {
 			icon: this.options.icon,
 			compact: this.options.compact,
@@ -190,7 +192,11 @@ export class PaneCompositeBar extends Disposable {
 				return;
 			}
 			this.onDidRegisterExtensions();
-			this._register(this.compositeBar.onDidChange(() => this.saveCachedViewContainers()));
+			this._register(this.compositeBar.onDidChange(() => {
+				console.log("🚀 ~ PaneCompositeBar ~ this._register ~ this.compositeBar:", this.compositeBar)
+				
+				return this.saveCachedViewContainers()
+			}));
 			this._register(this.storageService.onDidChangeValue(StorageScope.PROFILE, this.options.pinnedViewContainersKey, this._store)(e => this.onDidPinnedViewContainersStorageValueChange(e)));
 		});
 	}
@@ -228,6 +234,7 @@ export class PaneCompositeBar extends Disposable {
 
 	private onDidRegisterExtensions(): void {
 		this.hasExtensionsRegistered = true;
+		console.log("🚀 ~ PaneCompositeBar ~ onDidRegisterExtensions ~ this.hasExtensionsRegistered:", this.hasExtensionsRegistered)
 
 		// show/hide/remove composites
 		for (const { id } of this.cachedViewContainers) {
@@ -295,6 +302,8 @@ export class PaneCompositeBar extends Disposable {
 	}
 
 	private onDidRegisterViewContainers(viewContainers: readonly ViewContainer[]): void {
+		
+		console.log("🚀 ~ PaneCompositeBar ~ onDidRegisterViewContainers ~ viewContainers:", viewContainers)
 		for (const viewContainer of viewContainers) {
 			this.addComposite(viewContainer);
 
@@ -329,6 +338,7 @@ export class PaneCompositeBar extends Disposable {
 
 	private updateCompositeBarActionItem(viewContainer: ViewContainer, viewContainerModel: IViewContainerModel): void {
 		const compositeBarActionItem = this.toCompositeBarActionItemFrom(viewContainerModel);
+		console.log("🚀 ~ PaneCompositeBar ~ updateCompositeBarActionItem ~ compositeBarActionItem:", compositeBarActionItem)
 		const { activityAction, pinnedAction } = this.getCompositeActions(viewContainer.id);
 		activityAction.updateCompositeBarActionItem(compositeBarActionItem);
 
@@ -612,11 +622,14 @@ export class PaneCompositeBar extends Disposable {
 
 	private setPinnedViewContainers(pinnedViewContainers: IPinnedViewContainer[]): void {
 		this.pinnedViewContainersValue = JSON.stringify(pinnedViewContainers);
+		console.log("🚀 ~ PaneCompositeBar ~ setPinnedViewContainers ~ pinnedViewContainersValue:", this.pinnedViewContainersValue);
 	}
 
 	private _pinnedViewContainersValue: string | undefined;
 	private get pinnedViewContainersValue(): string {
 		if (!this._pinnedViewContainersValue) {
+			console.log("🚀 ~ PaneCompositeBar ~ getpinnedViewContainersValue ~ this._pinnedViewContainersValue:", this._pinnedViewContainersValue);
+			
 			this._pinnedViewContainersValue = this.getStoredPinnedViewContainersValue();
 		}
 
@@ -631,10 +644,15 @@ export class PaneCompositeBar extends Disposable {
 	}
 
 	private getStoredPinnedViewContainersValue(): string {
+		// this.storageService.remove(this.options.pinnedViewContainersKey, StorageScope.PROFILE);
+		// return '{}'
+		// return []
 		return this.storageService.get(this.options.pinnedViewContainersKey, StorageScope.PROFILE, '[]');
 	}
 
 	private setStoredPinnedViewContainersValue(value: string): void {
+		console.log("🚀 ~ PaneCompositeBar ~ setStoredPinnedViewContainersValue ~ value:", value)
+		
 		this.storageService.store(this.options.pinnedViewContainersKey, value, StorageScope.PROFILE, StorageTarget.USER);
 	}
 

@@ -225,6 +225,8 @@ export abstract class CompositePart<T extends Composite> extends Part {
 			compositeContainer.id = composite.getId();
 
 			composite.create(compositeContainer);
+			console.log("🚀 ~ CompositePart<T ~ showComposite ~ compositeContainer:", compositeContainer)
+
 			composite.updateStyles();
 
 			// Remember composite container

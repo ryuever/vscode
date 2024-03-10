@@ -1349,6 +1349,8 @@ export function createApiFactoryAndRegisterActors(accessor: ServicesAccessor): I
 			},
 			registerInteractiveSessionProvider(id: string, provider: vscode.InteractiveSessionProvider) {
 				checkProposedApiEnabled(extension, 'interactive');
+				console.log("🚀 ~ registerInteractiveSessionProvider ~ extension:", extension)
+
 				return extHostChat.registerChatProvider(extension, id, provider);
 			},
 			sendInteractiveRequestToProvider(providerId: string, message: vscode.InteractiveSessionDynamicRequest) {
@@ -1381,6 +1383,8 @@ export function createApiFactoryAndRegisterActors(accessor: ServicesAccessor): I
 		const chat: typeof vscode.chat = {
 			registerChatResponseProvider(id: string, provider: vscode.ChatResponseProvider, metadata: vscode.ChatResponseProviderMetadata) {
 				checkProposedApiEnabled(extension, 'chatProvider');
+				console.log("🚀 ~ registerChatResponseProvider ~ extension:", extension)
+				
 				return extHostChatProvider.registerProvider(extension.identifier, id, provider, metadata);
 			},
 			requestChatAccess(id: string) {

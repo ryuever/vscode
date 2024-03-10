@@ -206,6 +206,7 @@ export class CompositeBar extends Widget implements ICompositeBar {
 					return this.compositeOverflowActionViewItem;
 				}
 				const item = this.model.findItem(action.id);
+				console.log("🚀 ~ CompositeBar ~ create ~ this.model:", this.model)
 				return item && this.instantiationService.createInstance(
 					CompositeActionViewItem,
 					{ draggable: true, colors: this.options.colors, icon: this.options.icon, hoverOptions: this.options.activityHoverOptions, compact: this.options.compact },

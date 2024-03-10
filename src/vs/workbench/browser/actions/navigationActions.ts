@@ -75,6 +75,7 @@ abstract class BaseNavigationAction extends Action2 {
 	}
 
 	private async navigateToPanel(layoutService: IWorkbenchLayoutService, paneCompositeService: IPaneCompositePartService): Promise<IComposite | boolean> {
+		console.log("🚀 ~ BaseNavigationAction ~ navigateToPanel ~ layoutService:", layoutService)
 		if (!layoutService.isVisible(Parts.PANEL_PART)) {
 			return false;
 		}

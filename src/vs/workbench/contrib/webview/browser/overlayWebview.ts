@@ -74,6 +74,9 @@ export class OverlayWebview extends Disposable implements IOverlayWebview {
 	public onDidDispose = this._onDidDispose.event;
 
 	override dispose() {
+
+		debugger
+		
 		this._isDisposed = true;
 
 		this._container?.domNode.remove();
@@ -85,6 +88,7 @@ export class OverlayWebview extends Disposable implements IOverlayWebview {
 		this._firstLoadPendingMessages.clear();
 
 		this._onDidDispose.fire();
+
 
 		super.dispose();
 	}

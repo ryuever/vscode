@@ -118,6 +118,7 @@ export class ChatExtensionPointHandler implements IWorkbenchContribution {
 	private registerChatProvider(providerDescriptor: IRawChatProviderContribution): IDisposable {
 		// Register View
 		const viewId = this._chatContributionService.getViewIdForProvider(providerDescriptor.id);
+		console.log("🚀 ~ ChatExtensionPointHandler ~ registerChatProvider ~ viewId:", viewId)
 		const viewDescriptor: IViewDescriptor[] = [{
 			id: viewId,
 			containerIcon: this._viewContainer.icon,

@@ -128,7 +128,7 @@ export class EditorPanes extends Disposable {
 	}
 
 	async openEditor(editor: EditorInput, options: IEditorOptions | undefined, internalOptions: IInternalEditorOpenOptions | undefined, context: IEditorOpenContext = Object.create(null)): Promise<IOpenEditorResult> {
-		debugger
+
 		console.log('openEditor-----');
 		try {
 
@@ -270,9 +270,7 @@ export class EditorPanes extends Disposable {
 
 		// Apply input to pane；这个时候将webview挂载上去了
 		const { changed, cancelled } = await this.doSetInput(pane, editor, options, context);
-		debugger
 		// 上面那一步执行以后，renderer process就出来了。。
-		return;
 
 		// Make sure to pass focus to the pane or otherwise
 		// make sure that the pane window is visible unless
@@ -447,12 +445,8 @@ export class EditorPanes extends Disposable {
 			// load (https://github.com/microsoft/vscode/issues/34697)
 			editorPane.clearInput();
 
-			debugger
-
 			// Set the input to the editor pane
 			await editorPane.setInput(editor, options, context, operation.token);
-
-			return {}
 
 			if (!operation.isCurrent()) {
 				cancelled = true;

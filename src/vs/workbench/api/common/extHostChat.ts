@@ -44,6 +44,7 @@ export class ExtHostChat implements ExtHostChatShape {
 
 	registerChatProvider(extension: Readonly<IRelaxedExtensionDescription>, id: string, provider: vscode.InteractiveSessionProvider): vscode.Disposable {
 		const wrapper = new ChatProviderWrapper(extension, provider);
+		console.log("🚀 ~ ExtHostChat ~ registerChatProvider ~ wrapper:", wrapper)
 		this._chatProvider.set(wrapper.handle, wrapper);
 		this._proxy.$registerChatProvider(wrapper.handle, id);
 		return toDisposable(() => {

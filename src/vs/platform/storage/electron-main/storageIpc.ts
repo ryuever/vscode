@@ -113,6 +113,7 @@ export class StorageDatabaseChannel extends Disposable implements IServerChannel
 
 			case 'updateItems': {
 				const items: ISerializableUpdateRequest = arg;
+				console.log("🚀 ~ StorageDatabaseChannel ~ call ~ items: receive", items)
 
 				if (items.insert) {
 					for (const [key, value] of items.insert) {

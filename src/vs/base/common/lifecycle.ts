@@ -483,6 +483,7 @@ export abstract class Disposable implements IDisposable {
 
 	public dispose(): void {
 		markAsDisposed(this);
+		// console.log("🚀 ~ Disposable ~ dispose ~ this:", this)
 
 		this._store.dispose();
 	}

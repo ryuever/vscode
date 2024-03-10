@@ -21,6 +21,8 @@ export class Protocol implements IMessagePassingProtocol {
 	constructor(private sender: Sender, readonly onMessage: Event<VSBuffer>) { }
 
 	send(message: VSBuffer): void {
+		console.log("🚀 ~ Protocol ~ send ~ message:", message)
+		
 		try {
 			this.sender.send('vscode:message', message.buffer);
 		} catch (e) {

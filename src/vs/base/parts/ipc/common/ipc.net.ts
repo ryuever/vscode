@@ -557,6 +557,7 @@ export class Protocol extends Disposable implements IMessagePassingProtocol {
 		this._socketReader = this._register(new ProtocolReader(this._socket));
 
 		this._register(this._socketReader.onMessage((msg) => {
+			console.log("🚀 ~ Protocol ~ this._register ~ msg:", msg)
 			if (msg.type === ProtocolMessageType.Regular) {
 				this._onMessage.fire(msg.data);
 			}

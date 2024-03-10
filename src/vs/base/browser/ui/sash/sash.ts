@@ -569,6 +569,7 @@ export class Sash extends Disposable {
 			EventHelper.stop(e, false);
 			const event: ISashEvent = { startX, currentX: e.pageX, startY, currentY: e.pageY, altKey };
 
+			console.log("🚀 ~ Sash ~ onPointerMove ~ event:", event)
 			this._onDidChange.fire(event);
 		};
 

@@ -493,8 +493,6 @@ export class ExtensionEditor extends EditorPane {
 		this.activeElement = null;
 		this.transientDisposables.clear();
 
-		debugger
-
 		const token = this.transientDisposables.add(new CancellationTokenSource()).token;
 
 		const gallery = await this.getGalleryVersionToShow(extension, (this.options as IExtensionEditorOptions)?.showPreReleaseVersion);

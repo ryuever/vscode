@@ -701,6 +701,8 @@ export class ChatService extends Disposable implements IChatService {
 			throw new Error(`Provider ${provider.id} already registered`);
 		}
 
+		console.log("🚀 ~ registerProvider ~ this._providers:", this._providers)
+
 		this._providers.set(provider.id, provider);
 		this._hasProvider.set(true);
 		this._onDidRegisterProvider.fire({ providerId: provider.id });

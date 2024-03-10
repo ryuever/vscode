@@ -285,6 +285,8 @@ export abstract class Layout extends Disposable implements IWorkbenchLayoutServi
 		protected readonly parent: HTMLElement
 	) {
 		super();
+		console.log("🚀 ~ Layout ~ super:", this);
+
 	}
 
 	protected initLayout(accessor: ServicesAccessor): void {
@@ -1668,8 +1670,11 @@ export abstract class Layout extends Disposable implements IWorkbenchLayoutServi
 	resizePart(part: Parts, sizeChangeWidth: number, sizeChangeHeight: number): void {
 		const sizeChangePxWidth = Math.sign(sizeChangeWidth) * computeScreenAwareSize(getActiveWindow(), Math.abs(sizeChangeWidth));
 		const sizeChangePxHeight = Math.sign(sizeChangeHeight) * computeScreenAwareSize(getActiveWindow(), Math.abs(sizeChangeHeight));
+		console.log("🚀 ~ Layout ~ resizePart ~ sizeChangePxHeight:", part, sizeChangePxWidth, sizeChangePxHeight)
 
 		let viewSize: IViewSize;
+
+		
 
 		switch (part) {
 			case Parts.SIDEBAR_PART:

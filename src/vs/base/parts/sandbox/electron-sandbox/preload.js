@@ -136,6 +136,7 @@
 			 * @param {any[]} args
 			 */
 			send(channel, ...args) {
+				console.log("🚀 ~ send ~ channel:", channel, args)
 				if (validateIPC(channel)) {
 					ipcRenderer.send(channel, ...args);
 				}
@@ -147,6 +148,7 @@
 			 * @returns {Promise<any>}
 			 */
 			invoke(channel, ...args) {
+				console.log("🚀 ~ invoke ~ channel:", channel)
 				validateIPC(channel);
 
 				return ipcRenderer.invoke(channel, ...args);
@@ -158,6 +160,7 @@
 			 * @returns {IpcRenderer}
 			 */
 			on(channel, listener) {
+				console.log("🚀 ~ on ~ channel:", channel)
 				validateIPC(channel);
 
 				ipcRenderer.on(channel, listener);

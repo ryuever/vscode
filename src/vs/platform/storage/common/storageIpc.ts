@@ -61,11 +61,14 @@ abstract class BaseStorageDatabaseClient extends Disposable implements IStorageD
 	async getItems(): Promise<Map<string, string>> {
 		const serializableRequest: IBaseSerializableStorageRequest = { profile: this.profile, workspace: this.workspace };
 		const items: Item[] = await this.channel.call('getItems', serializableRequest);
+		console.log("🚀 ~ BaseStorageDatabaseClient ~ getItems ~ serializableRequest:", serializableRequest)
 
 		return new Map(items);
 	}
 
 	updateItems(request: IUpdateRequest): Promise<void> {
+		console.log("🚀 ~ BaseStorageDatabaseClient ~ updateItems ~ updateItems:")
+
 		const serializableRequest: ISerializableUpdateRequest = { profile: this.profile, workspace: this.workspace };
 
 		if (request.insert) {

@@ -348,9 +348,7 @@ export class WebviewElement extends Disposable implements IWebview, WebviewFindD
 
 		this._encodedWebviewOriginPromise.then(encodedWebviewOrigin => {
 			if (!this._disposed) {
-				debugger
 				this._initElement(encodedWebviewOrigin, this.extension, this._options);
-				debugger
 			}
 		});
 	}

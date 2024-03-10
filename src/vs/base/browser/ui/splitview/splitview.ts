@@ -307,6 +307,8 @@ class VerticalViewItem<TLayoutContext, TView extends IView<TLayoutContext>> exte
 class HorizontalViewItem<TLayoutContext, TView extends IView<TLayoutContext>> extends ViewItem<TLayoutContext, TView> {
 
 	layoutContainer(offset: number): void {
+		console.log("🚀 ~ HorizontalViewItem<TLayoutContext, ~ layoutContainer ~ offset:", offset)
+		
 		this.container.style.left = `${offset}px`;
 		this.container.style.width = `${this.size}px`;
 	}
@@ -971,6 +973,7 @@ export class SplitView<TLayoutContext = undefined, TView extends IView<TLayoutCo
 		this.sashDragState!.current = current;
 
 		const delta = current - start;
+		console.log("🚀 ~ SplitView<TLayoutContext ~ onSashChange ~ delta:", delta)
 		const newDelta = this.resize(index, delta, sizes, undefined, undefined, minDelta, maxDelta, snapBefore, snapAfter);
 
 		if (alt) {
@@ -1178,7 +1181,9 @@ export class SplitView<TLayoutContext = undefined, TView extends IView<TLayoutCo
 				const onEndDisposable = onEnd(this.onSashEnd, this);
 
 				const onDidResetDisposable = sash.onDidReset(() => {
+
 					const index = this.sashItems.findIndex(item => item.sash === sash);
+					console.log("🚀 ~ SplitView<TLayoutContext ~ onDidResetDisposable ~ index:", index)
 					const upIndexes = range(index, -1);
 					const downIndexes = range(index + 1, this.viewItems.length);
 					const snapBeforeIndex = this.findFirstSnapIndex(upIndexes);
@@ -1202,6 +1207,7 @@ export class SplitView<TLayoutContext = undefined, TView extends IView<TLayoutCo
 			}
 
 			container.appendChild(view.element);
+			console.log("🚀 ~ SplitView<TLayoutContext ~ doAddView ~ view.element:", view.element)
 
 			let highPriorityIndexes: number[] | undefined;
 

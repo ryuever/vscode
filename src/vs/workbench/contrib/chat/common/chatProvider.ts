@@ -65,6 +65,8 @@ export class ChatProviderService implements IChatProviderService {
 			throw new Error(`Chat response provider with identifier ${identifier} is already registered.`);
 		}
 		this._providers.set(identifier, provider);
+		console.log("🚀 ~ ChatProviderService ~ registerChatResponseProvider ~ identifier:", identifier)
+		
 		return toDisposable(() => this._providers.delete(identifier));
 	}
 

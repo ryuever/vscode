@@ -1088,7 +1088,6 @@ export class ExtensionsWorkbenchService extends Disposable implements IExtension
 			throw new Error(`Extension not found. ${extension}`);
 		}
 		const editor = await this.editorService.openEditor(this.instantiationService.createInstance(ExtensionsInput, extension), options, options?.sideByside ? SIDE_GROUP : ACTIVE_GROUP);
-		debugger
 		console.log("🚀 ~ ExtensionsWorkbenchService ~ open ~ editor:", editor)
 		if (options?.tab && editor instanceof ExtensionEditor) {
 			console.log('open--------------------------')
